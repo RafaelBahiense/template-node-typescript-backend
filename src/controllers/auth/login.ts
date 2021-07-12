@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { Secret } from "jsonwebtoken";
 
 import { connectionDB } from "../../config/database";
 import { Login } from "../../schemas/login";
@@ -26,7 +26,7 @@ export default async function login(req: Request, res: Response) {
         [email]
       );
       if (session?.rowCount === 0) {
-        const secret = process.env.JWT_SECRET;
+        const secret: Secret = process.env.JWT_SECRET as string;
         const configs = { expiresIn: 60 * 60 * 24 * 30 };
         const token = jwt.sign({ userId, name }, secret, configs);
         await connectionDB.query(

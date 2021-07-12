@@ -1,6 +1,6 @@
 import app from "./app";
 
-const {NODE_ENV, PORT} = process.env;
+const { NODE_ENV, PORT } = process.env;
 const dev: string = NODE_ENV === "development" ? " on Dev mode" : "";
 
 app.listen(PORT, () => {

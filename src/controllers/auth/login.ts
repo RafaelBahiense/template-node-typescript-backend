@@ -8,7 +8,7 @@ import { Login } from "../../schemas/login";
 export default async function login(req: Request, res: Response) {
   try {
     await Login.validateAsync(req.body);
-    
+
     const { email, password } = req.body;
     const auth = await connectionDB.query(
       `SELECT hash, id, name FROM users 
@@ -43,7 +43,11 @@ export default async function login(req: Request, res: Response) {
       }
       res
         .status(200)
-        .send({ token: session.rows[0].token, name: auth.rows[0].name, id: auth.rows[0].id });
+        .send({
+          token: session.rows[0].token,
+          name: auth.rows[0].name,
+          id: auth.rows[0].id,
+        });
     } else {
       res.sendStatus(401);
     }

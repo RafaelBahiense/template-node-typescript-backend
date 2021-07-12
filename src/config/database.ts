@@ -1,5 +1,9 @@
 import pg from "pg";
 
+import { setEnv } from "./env";
+
+setEnv();
+
 const {
   NODE_ENV,
   DB_HOST,

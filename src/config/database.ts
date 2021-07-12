@@ -17,7 +17,7 @@ export const connectionDB = new Pool(
     ? {
         user: DB_USERNAME,
         host: DB_HOST,
-        port: parseInt(DB_PORT),
+        port: parseInt(DB_PORT || "5432"),
         database: DB_DATABASE,
         password: DB_PASSWORD,
       }

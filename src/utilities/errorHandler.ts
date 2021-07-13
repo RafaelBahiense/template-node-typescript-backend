@@ -20,6 +20,7 @@ function joiError(err: ValidationError, res: Response) {
         case "string.email":
         case "number.min":
         case "number.base":
+        case "any.required":
           res.status(400).send(err.details[0].message);
           break;
         default:

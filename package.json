@@ -7,7 +7,7 @@
     "start": "dist/src/server.js",
     "build": "tsc",
     "dev": "NODE_ENV=development ts-node-dev --respawn --transpile-only --input-type=module src/server.ts",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test npx jest"
+    "test": "NODE_ENV=test npx jest -i"
   },
   "keywords": [],
   "author": "Rafael Bahiense Brasão",

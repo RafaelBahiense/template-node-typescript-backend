@@ -1,11 +1,11 @@
 import bcrypt from "bcrypt";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import jwt, { Secret } from "jsonwebtoken";
 
 import { connectionDB } from "../../config/database";
 import { Login } from "../../schemas/login";
 
-export default async function login(req: Request, res: Response) {
+export default async function login(req: Request, res: Response, next: NextFunction) {
   try {
     await Login.validateAsync(req.body);
 
@@ -52,7 +52,6 @@ export default async function login(req: Request, res: Response) {
       res.sendStatus(401);
     }
   } catch (e) {
-    console.log(e);
-    res.sendStatus(500);
+    next(e);
   }
 }

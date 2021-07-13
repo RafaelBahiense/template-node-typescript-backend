@@ -1,9 +1,9 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 
 import login from "../../controllers/auth/login";
 
 const router: Router = Router();
 
-router.post("/login", (req: Request, res: Response) => login(req, res));
+router.post("/login", login);
 
 export const Login: Router = router;

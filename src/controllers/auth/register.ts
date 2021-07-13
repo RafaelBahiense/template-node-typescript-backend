@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 import { connectionDB } from "../../config/database";
 import { Register } from "../../schemas/register";
 
-export default async function register(req: Request, res: Response) {
+export default async function register(req: Request, res: Response, next: NextFunction) {
   try {
     await Register.validateAsync(req.body);
 
@@ -24,7 +24,6 @@ export default async function register(req: Request, res: Response) {
     );
     res.sendStatus(201);
   } catch (e) {
-    console.log(e);
-    res.sendStatus(500);
+    next(e);
   }
 }

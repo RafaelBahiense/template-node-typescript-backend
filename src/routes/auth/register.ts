@@ -1,9 +1,9 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 
 import register from "../../controllers/auth/register";
 
 const router: Router = Router();
 
-router.post("/register", (req: Request, res: Response) => register(req, res));
+router.post("/register", register);
 
 export const Register: Router = router;

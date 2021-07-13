@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 import { connectionDB } from "../../src/config/database";
-import { RegisterUser } from "./userTypes";
+import { RegisterUser } from "../factories/user";
 
 export async function addUser(): Promise<void> {
   const { name, email, password } = new RegisterUser({});

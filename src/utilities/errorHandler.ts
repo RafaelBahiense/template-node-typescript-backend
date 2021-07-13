@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "joi";
+import { DatabaseError } from "pg";
 
 export default function errorHandler(
   err: any,
@@ -7,12 +8,13 @@ export default function errorHandler(
   res: Response,
   next: NextFunction
 ) {
+  console.log(err)
   if (err instanceof ValidationError) joiError(err, res);
+  if (err instanceof DatabaseError) pgError(err, res);
   else return res.sendStatus(500);
 }
 
 function joiError(err: ValidationError, res: Response) {
-  console.log(err.details[0].type);
   switch (err.details[0].type) {
     case "string.empty":
     case "string.min":
@@ -23,10 +25,14 @@ function joiError(err: ValidationError, res: Response) {
     case "number.min":
     case "number.base":
     case "any.required":
-      res.status(400).send(err.details[0].message);
+      res.status(400).send(err.details.map((details) => details.message));
       break;
     default:
-      res.status(500).send(err.details[0].message);
+      res.status(500).send(err.details.map((details) => details.message));
       break;
   }
+}
+
+function pgError(err: DatabaseError, res: Response) {
+  console.log("pg error");
 }

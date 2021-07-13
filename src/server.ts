@@ -1,4 +1,4 @@
-import "./config/env"
+import "./config/env";
 import app from "./app";
 
 const { NODE_ENV, PORT } = process.env;

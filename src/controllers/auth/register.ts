@@ -4,7 +4,11 @@ import { NextFunction, Request, Response } from "express";
 import { connectionDB } from "../../config/database";
 import { Register } from "../../schemas/register";
 
-export default async function register(req: Request, res: Response, next: NextFunction) {
+export default async function register(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     await Register.validateAsync(req.body);
 

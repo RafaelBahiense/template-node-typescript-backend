@@ -12,5 +12,5 @@ export async function truncateTable(table: string): Promise<void> {
 }
 
 export function endConnection(): void {
-  connectionDB.end()
+  connectionDB.end();
 }

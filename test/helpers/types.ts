@@ -17,7 +17,11 @@ export class RegisterUser implements User {
   name: string;
   email: string;
   password: string;
-  constructor({ name = "Jest" , email = "jest@jest.br", password = "12345678"}) {
+  constructor({
+    name = "Jest",
+    email = "jest@jest.br",
+    password = "12345678",
+  }) {
     this.name = name;
     this.email = email;
     this.password = password;

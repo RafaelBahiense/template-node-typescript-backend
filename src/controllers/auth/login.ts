@@ -5,7 +5,11 @@ import jwt, { Secret } from "jsonwebtoken";
 import { connectionDB } from "../../config/database";
 import { Login } from "../../schemas/login";
 
-export default async function login(req: Request, res: Response, next: NextFunction) {
+export default async function login(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     await Login.validateAsync(req.body);
 
@@ -41,13 +45,11 @@ export default async function login(req: Request, res: Response, next: NextFunct
           [email]
         );
       }
-      res
-        .status(200)
-        .send({
-          token: session.rows[0].token,
-          name: auth.rows[0].name,
-          id: auth.rows[0].id,
-        });
+      res.status(200).send({
+        token: session.rows[0].token,
+        name: auth.rows[0].name,
+        id: auth.rows[0].id,
+      });
     } else {
       res.sendStatus(401);
     }

@@ -3,7 +3,7 @@
 ## The following tools were used in the construction of the project:
 |NodeJS|ExpressJS|TypeScript|PostgreSQL|
 |-|-|-|-|
-|![icon](./public/imgs/node-js.png)|![icon](./public/imgs/express.png)|![icon](./public/imgs/typescript.png)|![icon](./public/imgs/postgresql.png)|
+|<img src="https://cdn.svgporn.com/logos/nodejs.svg" width="45px"/>|<img src="https://cdn.svgporn.com/logos/express.svg" width="45px"/>|<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" width="45px"/>|<img src="https://cdn.svgporn.com/logos/postgresql.svg" width="45px"/> |
 |Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine|Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications|TypeScript is an open-source language which builds on JavaScript, one of the world’s most used tools, by adding static type definitions|PostgreSQL is a powerful, open source object-relational database|
 ___
 

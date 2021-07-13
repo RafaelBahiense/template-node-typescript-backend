@@ -3,7 +3,7 @@ import supertest from "supertest";
 import "../../src/config/env";
 import app from "../../src/app";
 import { addUser, truncateTable, endConnection } from "../helpers/database";
-import { LoginUser } from "../helpers/types";
+import { LoginUser } from "../helpers/userTypes";
 
 beforeAll(async () => {
   await truncateTable("users");

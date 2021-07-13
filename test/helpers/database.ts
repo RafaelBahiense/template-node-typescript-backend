@@ -1,9 +1,15 @@
+import bcrypt from "bcrypt";
+
 import { connectionDB } from "../../src/config/database";
+import { RegisterUser } from "./userTypes";
 
 export async function addUser(): Promise<void> {
+  const { name, email, password } = new RegisterUser({});
+  const hash = bcrypt.hashSync(password, 12);
   await connectionDB.query(
     `INSERT INTO users (name, email, hash) 
-        VALUES ('Jest', 'jest@jest.br','$2b$12$4iSzSqv3Cb8KsewVXCfyyu5BZOzEq2CaDh2eTHni75z/ZLvT7suuC')`
+        VALUES ($1, $2, $3)`,
+    [name, email, hash]
   );
 }
 

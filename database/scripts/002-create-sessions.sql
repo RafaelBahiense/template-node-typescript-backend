@@ -1,6 +1,9 @@
 CREATE TABLE "sessions" (
-  "id" SERIAL PRIMARY KEY,
-  "userId" INTEGER NOT NULL,
-  "token" TEXT NOT NULL,
-  "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	"id" serial NOT NULL,
+	"userId" integer NOT NULL,
+	"token" TEXT NOT NULL,
+	"createdAt" timestamp with time zone NOT NULL,
+	CONSTRAINT "sessions_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
 );

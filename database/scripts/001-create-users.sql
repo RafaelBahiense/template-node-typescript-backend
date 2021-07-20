@@ -1,7 +1,10 @@
 CREATE TABLE "users" (
-  "id" SERIAL PRIMARY KEY,
-  "name" TEXT NOT NULL,
-  "email" TEXT NOT NULL,
-  "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  "hash" TEXT NOT NULL
+	"id" serial NOT NULL,
+	"name" TEXT NOT NULL,
+	"email" TEXT NOT NULL UNIQUE,
+	"createdAt" timestamp with time zone NOT NULL,
+	"hash" TEXT NOT NULL,
+	CONSTRAINT "users_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
 );

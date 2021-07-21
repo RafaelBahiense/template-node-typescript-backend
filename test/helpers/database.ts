@@ -14,7 +14,7 @@ export async function addUser(): Promise<void> {
 }
 
 export async function truncateTable(table: string): Promise<void> {
-  await connectionDB.query(`TRUNCATE TABLE ${table} RESTART IDENTITY`);
+  await connectionDB.query(`TRUNCATE TABLE ${table} RESTART IDENTITY CASCADE`);
 }
 
 export function endConnection(): void {

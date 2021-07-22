@@ -5,7 +5,7 @@ import { RegisterUser } from "../factories/user";
 
 export async function addUser(): Promise<void> {
   const { name, email, password } = new RegisterUser({});
-  const hash = bcrypt.hashSync(password, 12);
+  const hash = bcrypt.hashSync(password as string, 12);
   await connectionDB.query(
     `INSERT INTO users (name, email, hash) 
         VALUES ($1, $2, $3)`,

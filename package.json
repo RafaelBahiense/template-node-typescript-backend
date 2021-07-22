@@ -7,7 +7,7 @@
     "start": "NODE_ENV=production node dist/server.js",
     "build": "npx tsc",
     "dev": "NODE_ENV=development npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
-    "test": "NODE_ENV=test npx jest --rootDir=test -i"
+    "test": "NODE_ENV=test npx jest --rootDir=tests -i"
   },
   "keywords": [],
   "author": "Rafael Bahiense Brasão",

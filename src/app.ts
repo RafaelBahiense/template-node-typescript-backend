@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import cors from "cors";
 
 import { MainRouter } from "./routes/mainRouter";
-import errorHandler from "./utilities/errorHandler";
+import errorHandler from "./controllers/error/errorController";
 
 const app: Application = express();
 

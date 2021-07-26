@@ -1,29 +1,27 @@
 import bcrypt from "bcrypt";
-import jwt, { Secret } from "jsonwebtoken";
 
 import { Login } from "../../schemas/login";
-import * as userRepository from "../../repositories/userRepository";
-import * as sessionRepository from "../../repositories/sessionRepository";
-import { QueryResult } from "pg";
+import repositories from "../../repositories/repositories";
+import * as auth from "../../utilities/authentication";
+import CustomError from "../errorHandling/customError";
 
 export async function login(email: string, password: string) {
   await Login.validateAsync({ email, password });
 
-  const auth = await userRepository.getByEmail(email);
-  if (auth.rowCount === 0) return undefined;
-  const { hash, id: userId, name } = auth.rows[0];
+  const user = await repositories.user.getByEmail(email);
+  if (!user) throw CustomError.notExistent();
+  const { hash, id: userId, name } = user;
 
-  if (!bcrypt.compareSync(password, hash)) return null;
+  if (!bcrypt.compareSync(password, hash)) throw CustomError.wrongPassword();
 
-  let session = await sessionRepository.get(userId);
+  const sessions = await auth.checkExpired(await repositories.session.get(userId));
 
-  if (session.rowCount === 0) {
-    const secret: Secret = process.env.JWT_SECRET as string;
-    const configs = { expiresIn: 60 * 60 * 24 * 30 };
-    const token = jwt.sign({ userId, name }, secret, configs);
-    session = await sessionRepository.register(userId, token);
+  if (sessions.length > 0) {
+    const { token } = sessions[0];
+    return { userId, name, token };
   }
 
-  const { token } = session.rows[0];
+  const token = auth.create(userId, name);
+  await repositories.session.register(userId, token);
   return { userId, name, token };
 }

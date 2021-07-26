@@ -1,5 +1,6 @@
 import { QueryResult } from "pg";
 import { connectionDB } from "../config/database";
+import { User } from "../types/userTypes";
 
 export async function register(
   name: string,
@@ -13,10 +14,12 @@ export async function register(
   );
 }
 
-export async function getByEmail(email: string): Promise<QueryResult<any>> {
-  return await connectionDB.query(
-    `SELECT * FROM users 
+export async function getByEmail(email: string): Promise<User> {
+  return (
+    await connectionDB.query(
+      `SELECT * FROM users 
     WHERE email = $1`,
-    [email]
-  );
+      [email]
+    )
+  ).rows[0];
 }

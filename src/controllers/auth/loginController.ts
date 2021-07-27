@@ -16,7 +16,7 @@ export default async function login(
     if (login) res.status(200).send(login);
     if (login === undefined) res.sendStatus(404);
     else res.sendStatus(401);
-    
+
   } catch (e) {
     next(e);
   }

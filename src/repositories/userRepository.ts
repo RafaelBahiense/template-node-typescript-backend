@@ -1,4 +1,3 @@
-import { QueryResult } from "pg";
 import { connectionDB } from "../config/database";
 import { User } from "../types/userTypes";
 

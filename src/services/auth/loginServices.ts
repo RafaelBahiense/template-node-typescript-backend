@@ -3,16 +3,16 @@ import bcrypt from "bcrypt";
 import { Login } from "../../schemas/login";
 import repositories from "../../repositories/repositories";
 import * as auth from "../../utilities/authentication";
-import CustomError from "../errorHandling/customError";
+import * as error from "../../types/errorTypes";
 
 export async function login(email: string, password: string) {
   await Login.validateAsync({ email, password });
 
   const user = await repositories.user.getByEmail(email);
-  if (!user) throw CustomError.notExistent();
+  if (!user) throw error.service.notExistent();
   const { hash, id: userId, name } = user;
 
-  if (!bcrypt.compareSync(password, hash)) throw CustomError.wrongPassword();
+  if (!bcrypt.compareSync(password, hash)) throw error.service.wrongPassword();
 
   const sessions = await auth.checkExpired(await repositories.session.get(userId));
 

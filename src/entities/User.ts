@@ -19,7 +19,7 @@ export default class User {
   @Column()
   email!: string;
 
-  @Column({ type: "timestamptz" })
+  @Column({ type: "timestamptz", default: () => 'CURRENT_TIMESTAMP' })
   createdAt!: Date;
 
   @Column()

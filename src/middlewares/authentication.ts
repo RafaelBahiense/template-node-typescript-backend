@@ -15,13 +15,13 @@ export function authenticateToken(
 
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET as string);
-    res.locals.user = user
+    res.locals.user = user;
     next();
   } catch (error) {
     return res.sendStatus(401);
   }
 }
 
-export function create(userId: number, email: string) {
+export function create(userId: number, email: string): string {
   return jwt.sign({ id: userId, email }, secret, jwtConfigs);
 }

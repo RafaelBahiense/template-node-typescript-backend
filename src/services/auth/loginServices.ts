@@ -2,7 +2,7 @@ import { getRepository } from "typeorm";
 import bcrypt from "bcrypt";
 
 import { Login } from "../../schemas/login";
-import { LoginUser } from "../../interfaces/userInterfaces";
+import { LoginUser, AuthUser } from "../../interfaces/userInterfaces";
 import User from "../../entities/User";
 import Sessions from "../../entities/Sessions";
 import * as auth from "../../middlewares/authentication";

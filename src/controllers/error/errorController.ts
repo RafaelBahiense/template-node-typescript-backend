@@ -9,7 +9,6 @@ import configError from "../../services/errorHandling/configError";
 import serviceError from "../../services/errorHandling/serviceError";
 import * as error from "../../types/errorTypes";
 
-
 export default function errorHandler(
   err: any,
   _: Request,
@@ -40,9 +39,9 @@ export function jsonError(
   req: Request,
   res: Response,
   next: NextFunction
-) {
+): Response<number> | undefined {
   if (err instanceof SyntaxError) {
-    res.sendStatus(400);
+    return res.sendStatus(400);
   } else {
     next();
   }

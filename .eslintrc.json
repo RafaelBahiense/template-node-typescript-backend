@@ -10,7 +10,14 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "no-unused-vars": "off",
+    "no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/recommended/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/recommended/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "extends": [
     "prettier",

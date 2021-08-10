@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Unique } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  Unique,
+} from "typeorm";
 import Sessions from "./Sessions";
 
 @Entity("users")
@@ -13,7 +19,7 @@ export default class User {
   @Column()
   email!: string;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: "timestamptz" })
   createdAt!: Date;
 
   @Column()

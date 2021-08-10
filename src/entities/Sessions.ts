@@ -1,5 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique, ManyToOne } from "typeorm";
-import User from "./User"
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Unique,
+  ManyToOne,
+} from "typeorm";
+import User from "./User";
 
 @Entity("sessions")
 @Unique(["userId", "token"])

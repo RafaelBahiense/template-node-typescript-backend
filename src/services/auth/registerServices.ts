@@ -1,10 +1,13 @@
 import bcrypt from "bcrypt";
+import { getRepository } from "typeorm";
 
+import { RegisterUser } from "../../interfaces/userInterfaces";
 import { Register } from "../../schemas/register";
-import repositories from "../../repositories/repositories";
+import User from "../../entities/User";
 
-export async function register(name: string, email: string, password: string) {
+export async function register({ name, email, password }: RegisterUser) {
   await Register.validateAsync({ name, email, password });
+
   const hash = bcrypt.hashSync(password, 12);
-  await repositories.user.register(name, email, hash);
+  await getRepository(User).insert({ name, email, hash });
 }

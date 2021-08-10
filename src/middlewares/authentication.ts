@@ -22,6 +22,6 @@ export function authenticateToken(
   }
 }
 
-export function create(userId: number, name: string) {
-  return jwt.sign({ userId, name }, secret, jwtConfigs);
+export function create(userId: number, email: string) {
+  return jwt.sign({ id: userId, email }, secret, jwtConfigs);
 }

@@ -18,9 +18,10 @@ export default function errorHandler(
 ) {
   let statusCode: number;
 
-  if (err instanceof ValidationError) statusCode = joiError(err);
-  else if (err instanceof DatabaseError) statusCode = databaseError(err);
+  if (err instanceof SyntaxError) statusCode = 400;
+  else if (err instanceof ValidationError) statusCode = joiError(err);
   else if (err instanceof error.ServiceError) statusCode = serviceError(err);
+  else if (err instanceof DatabaseError) statusCode = databaseError(err as any);
   else {
     logger.error(err);
     statusCode = 500;
@@ -32,4 +33,17 @@ export default function errorHandler(
   }
 
   return res.sendStatus(statusCode);
+}
+
+export function jsonError(
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  if (err instanceof SyntaxError) {
+    res.sendStatus(400);
+  } else {
+    next();
+  }
 }

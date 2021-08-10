@@ -5,7 +5,7 @@ import { Login } from "./auth/login";
 
 const router: Router = Router();
 
-router.use("/", Register);
-router.use("/", Login);
+router.use(Register);
+router.use(Login);
 
 export const MainRouter: Router = router;

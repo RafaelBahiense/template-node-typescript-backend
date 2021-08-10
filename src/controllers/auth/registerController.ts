@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import * as registerServices from "../../services/auth/registerServices";
-import { RegisterUser } from "../../types/userTypes";
+import { RegisterUser } from "../../interfaces/userInterfaces";
 
 export default async function register(
   req: Request,
@@ -12,7 +12,7 @@ export default async function register(
     const { name, email, password }: RegisterUser = req.body;
     if (!(name && email && password)) return res.sendStatus(400);
 
-    await registerServices.register(name, email, password);
+    await registerServices.register({ name, email, password });
     res.sendStatus(201);
     
   } catch (e) {

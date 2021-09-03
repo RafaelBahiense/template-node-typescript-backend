@@ -4,7 +4,7 @@
 
 ## About
 
-This Starter Kit Template can be the foundation of a TypeScript & TypeORM Node.js Microservice or Backend 
+This Starter Kit Template can be the foundation of a TypeScript & TypeORM Node.js Backend 
 Below are the implemented features:
 
 - Sign Up
